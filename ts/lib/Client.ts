@@ -272,6 +272,9 @@ export class AmongusClient extends EventEmitter {
                                                 case MessageID.RPC:
                                                     switch (part.rpcid) {
                                                         case RPCID.CompleteTask:
+                                                            const player = this.game.getClientByComponent(part.handlerid);
+                                                            player.emit("taskComplete");
+
                                                             break;
                                                         case RPCID.SyncSettings:
                                                             this.game._syncSettings(part.options);
